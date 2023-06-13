@@ -1,0 +1,8 @@
+
+BEGIN ;
+
+DROP  TABLE IF EXISTS user_session ;
+
+ALTER TABLE IF EXISTS users DROP COLUMN IF EXISTS last_login ;
+
+COMMIT ;

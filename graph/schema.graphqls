@@ -1,0 +1,78 @@
+
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+scalar Upload
+
+type Link{
+  Id: String!
+  title: String!
+  address: String!
+  user: String!
+}
+type User {
+  Id: String!
+  firstName: String!
+  lastName: String!
+  dob: String!
+  phone: String!
+  email: String!
+  password: String!
+}
+type ProfileImage {
+  userId: String!
+  file: Upload!
+}
+type Query {
+  links: [Link!]!
+  link(id:String!):Link
+  users: [User!]!
+  user(id:String!):User
+}
+input NewLink{
+  title: String!
+  address: String!
+  user_id: String!
+}
+input NewProfileImage{
+  userId: String!
+  file: Upload
+}
+input RefreshTokenInput{
+  token: String!
+}
+input NewUser {
+  Id: String!
+  firstName: String!
+  lastName: String!
+  dob: String!
+  phone: String!
+  email: String!
+  password: String!
+}
+input Login{
+  email: String!
+  password: String!
+}
+input DeleteUser {
+  Id: String!
+}
+input UpdateUser{
+  Id: String!
+  firstName: String!
+  lastName: String!
+  dob: String!
+  phone: String!
+  email: String!
+  password: String!
+}
+type Mutation {
+  createUser(input: NewUser!): User!
+  uploadProfileImage(input: NewProfileImage!): Boolean!
+  createLink(input: NewLink):Link!
+  login(input: Login!):String!
+  refreshToken(input: RefreshTokenInput!):String!
+  removeUser(input: DeleteUser!): User !
+  updateUser(input:UpdateUser!): User!
+}
